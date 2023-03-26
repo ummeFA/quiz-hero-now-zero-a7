@@ -23,8 +23,8 @@ startQuiz.addEventListener("click", () => {
 
   let x = setInterval(() => {
     if (counterNum < 0) {
-      coutDown.classList.remove("flex");
-      coutDown.classList.add("hidden");
+      countDown.classList.remove("flex");
+      countDown.classList.add("hidden");
       counterNum = 3;
       count = 0;
       timer = null;
@@ -45,10 +45,11 @@ startQuiz.addEventListener("click", () => {
 
 // All quiz data fetched from json
 const loadQuiz = async () => {
-  const res = await fetch("./data/quiz.json");
-  const data = await res.json;
+  const res = await fetch("data/quiz.json");
+  console.log()
+  const data = res.json();
   quizData = data;
-  displayQuiz(data);
+  displayQuiz(quizData);
 };
 
 // Displaying quiz on quiz page
@@ -74,7 +75,7 @@ const displayQuiz = (data) => {
 };
 
 // EventListener for quiz submit button
-document.querySelector("#submit").addEventlistener("click", () => {
+document.querySelector("#submit").addEventListener("click", () => {
   if (answers.length < 6) {
     return;
   }
